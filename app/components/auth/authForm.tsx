@@ -43,17 +43,36 @@ export default function AuthForm() {
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setIsSigningIn(true);
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+
     console.log({ error, data });
+
     if (!error) {
-      router.push("/my-campsites");
-    } else {
-      setIsSigningIn(false);
+      window.location.assign("/my-campsites"); // hard reload
+      return;
     }
+
+    setIsSigningIn(false);
   }
+  // async function handleLogin(e: React.FormEvent) {
+  //   e.preventDefault();
+  //   setIsSigningIn(true);
+  //   const { data, error } = await supabase.auth.signInWithPassword({
+  //     email,
+  //     password,
+  //   });
+  //   console.log({ error, data });
+  //   if (!error) {
+  //     router.push("/my-campsites");
+  //     router.refresh();
+  //   } else {
+  //     setIsSigningIn(false);
+  //   }
+  // }
 
   return (
     <form
