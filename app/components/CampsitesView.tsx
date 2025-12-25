@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Map as MapIcon } from "lucide-react";
-import CampsiteCard from "@/app/components/campsites/CampsiteCard";
+import CampsiteCard from "@/app/components/campsites/campsiteCard";
 import MyCampsitesMap from "@/app/components/campsites/MyCampsitesMap";
 import CampsiteFilters, {
   FilterState,

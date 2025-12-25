@@ -8,7 +8,7 @@ import CampsiteFilters, {
   FilterState,
 } from "@/app/components/campsites/CampsiteFilters";
 import { Campsite } from "@/lib/types/Campsite";
-import CampsiteCard from "./CampsiteCard";
+import CampsiteCard from "./campsiteCard";
 
 export default function CampsitesView({
   campsites,
