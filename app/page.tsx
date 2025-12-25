@@ -8,7 +8,7 @@ export default function Home() {
           Welcome
         </h2>
         <p className="mb-6 text-lg text-center">
-          Sign in to upload and save your favorite photos.
+          Sign in to start saving campsites today!
         </p>
         <AuthForm />
       </div>
