@@ -94,7 +94,7 @@ export default function AuthForm() {
           </>
         ) : (
           <>
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <button
               type="button"
               onClick={() => setIsNewUser(true)}

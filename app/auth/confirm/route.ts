@@ -20,19 +20,36 @@ export async function GET(request: Request) {
         get(name: string) {
           return cookieStore.get(name)?.value;
         },
-        set(name: string, value: string, options: any) {
+        set(name: string, value: string, options: Record<string, unknown>) {
           cookieStore.set({ name, value, ...options });
         },
-        remove(name: string, options: any) {
+        remove(name: string, options: Record<string, unknown>) {
           cookieStore.set({ name, value: "", ...options });
         },
       },
     }
   );
 
-  if (token_hash && type) {
+  type OtpType =
+    | "signup"
+    | "magiclink"
+    | "invite"
+    | "recovery"
+    | "email_change";
+
+  const isValidOtpType = (value: string | null): value is OtpType => {
+    return (
+      value === "signup" ||
+      value === "magiclink" ||
+      value === "invite" ||
+      value === "recovery" ||
+      value === "email_change"
+    );
+  };
+
+  if (token_hash && isValidOtpType(type)) {
     const { error } = await supabase.auth.verifyOtp({
-      type: type as any, // or narrow to specific allowed values
+      type,
       token_hash,
     });
 

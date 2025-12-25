@@ -54,7 +54,21 @@ export async function updateCampsite(formData: FormData) {
 
   // Build update payload from submitted fields
   // (Undefined = not provided; Null = clear the value)
-  const patch: Record<string, any> = {
+  type CampsitePatch = {
+    name?: string | null;
+    description?: string | null;
+    date_visited?: string | null;
+    city?: string | null;
+    state?: string | null;
+    country?: string | null;
+    notes?: string | null;
+    rating?: number | null;
+    lat?: number | null;
+    lng?: number | null;
+    [key: string]: string | number | null | undefined;
+  };
+
+  const patch: CampsitePatch = {
     name: s("name"),
     description: s("description"),
     date_visited: s("date_visited"),

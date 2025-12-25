@@ -6,7 +6,6 @@ import supabase from "../../utils/supabaseClient";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Loader2, Upload, CheckCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 type Props = {
   campsiteId: number;
