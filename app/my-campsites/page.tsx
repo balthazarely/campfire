@@ -25,13 +25,12 @@ export default async function MyCampsites() {
 
   if (!user) redirect("/");
 
-  const { data: campsite, error } = (await supabase
+  const { data: campsite } = (await supabase
     .from("campsites")
     .select("*")
     .eq("user_id", user!.id)
     .order("date_visited", { ascending: false })) as {
     data: Campsite[] | null;
-    error: any;
   };
 
   return (
