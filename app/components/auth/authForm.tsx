@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import supabase from "../../utils/supabaseClient";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 export default function AuthForm() {
   const [isNewUser, setIsNewUser] = useState(false);
@@ -12,7 +12,7 @@ export default function AuthForm() {
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
 
-  const router = useRouter();
+  // const router = useRouter();
 
   let signInMessage = "Sign In";
 
