@@ -7,9 +7,7 @@ export default function Home() {
         <h2 className="text-white text-2xl font-bold mb-4 text-center">
           Welcome
         </h2>
-        <p className="mb-6 text-lg text-center">
-          Sign in to start saving campsites today!
-        </p>
+        <p className="mb-6 text-lg text-center">Sign in!</p>
         <AuthForm />
       </div>
     </main>
