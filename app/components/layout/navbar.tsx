@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MapPin, Menu, X } from "lucide-react";
+import { MapPin, Menu } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
