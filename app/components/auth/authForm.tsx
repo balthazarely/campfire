@@ -70,7 +70,9 @@ export default function AuthForm() {
     // Failed login
     setIsSigningIn(false);
     if (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (error as any)?.status === 400 ||
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (error as any)?.code === "invalid_credentials"
     ) {
       setErrorMessage("Invalid email or password.");
