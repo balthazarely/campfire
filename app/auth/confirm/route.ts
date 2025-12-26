@@ -1,4 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
+import type { EmailOtpType } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -20,36 +21,23 @@ export async function GET(request: Request) {
         get(name: string) {
           return cookieStore.get(name)?.value;
         },
-        set(name: string, value: string, options: Record<string, unknown>) {
+        set(
+          name: string,
+          value: string,
+          options: Parameters<typeof cookieStore.set>[2]
+        ) {
           cookieStore.set({ name, value, ...options });
         },
-        remove(name: string, options: Record<string, unknown>) {
+        remove(name: string, options: Parameters<typeof cookieStore.set>[2]) {
           cookieStore.set({ name, value: "", ...options });
         },
       },
     }
   );
 
-  type OtpType =
-    | "signup"
-    | "magiclink"
-    | "invite"
-    | "recovery"
-    | "email_change";
-
-  const isValidOtpType = (value: string | null): value is OtpType => {
-    return (
-      value === "signup" ||
-      value === "magiclink" ||
-      value === "invite" ||
-      value === "recovery" ||
-      value === "email_change"
-    );
-  };
-
-  if (token_hash && isValidOtpType(type)) {
+  if (token_hash && type) {
     const { error } = await supabase.auth.verifyOtp({
-      type,
+      type: type as EmailOtpType,
       token_hash,
     });
 

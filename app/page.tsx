@@ -2,12 +2,12 @@ import AuthForm from "./components/auth/authForm";
 
 export default function Home() {
   return (
-    <main className="flex items-center justify-center bg-gray-900 min-h-screen">
-      <div className="bg-gray-700 rounded-lg shadow-lg p-6 w-full max-w-lg">
-        <h2 className="text-white text-2xl font-bold mb-4 text-center">
-          Welcome
-        </h2>
-        <p className="mb-6 text-lg text-center">Sign in!</p>
+    <main className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+      <div className="w-full max-w-md space-y-4 text-center text-white">
+        <h1 className="text-3xl font-semibold tracking-tight">CampFinder</h1>
+        <p className="text-sm text-gray-300">
+          Sign in to view and manage your campsites.
+        </p>
         <AuthForm />
       </div>
     </main>

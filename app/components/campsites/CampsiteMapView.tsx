@@ -36,6 +36,22 @@ export default function CampsiteMapView({
 
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
+    map.on("style.load", () => {
+      if (!map.getSource("mapbox-dem")) {
+        map.addSource("mapbox-dem", {
+          type: "raster-dem",
+          url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+          tileSize: 512,
+          maxzoom: 14,
+        });
+      }
+
+      map.setTerrain({
+        source: "mapbox-dem",
+        exaggeration: 1.5,
+      });
+    });
+
     markerRef.current = new mapboxgl.Marker().setLngLat([lng, lat]).addTo(map);
 
     mapRef.current = map;

@@ -57,5 +57,5 @@ export async function createCampsite(formData: FormData) {
   revalidatePath("/my-campsites");
 
   // 🚀 navigate after success
-  redirect("/my-campsites");
+  redirect("/my-campsites?created=1");
 }

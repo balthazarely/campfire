@@ -106,7 +106,7 @@ export default async function CampsitePage({ params }: PageProps) {
       : null;
 
   return (
-    <main className="container mx-auto py-8 px-4">
+    <main className="max-w-3xl mx-auto py-8 px-4">
       <Button asChild variant="ghost" className="mb-6">
         <Link href="/my-campsites">← Back to Campsites</Link>
       </Button>

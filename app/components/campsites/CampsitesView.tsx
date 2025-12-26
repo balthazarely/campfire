@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Map as MapIcon } from "lucide-react";
 import MyCampsitesMap from "@/app/components/campsites/MyCampsitesMap";
@@ -25,6 +26,11 @@ export default function CampsitesView({
     state: "all",
     dateRange: "all",
   });
+
+  const hasActiveFilters =
+    filters.rating !== "all" ||
+    filters.state !== "all" ||
+    filters.dateRange !== "all";
 
   // Get unique states for filter dropdown
   const availableStates = useMemo(() => {
@@ -131,14 +137,27 @@ export default function CampsitesView({
             {/* Scrollable Cards Container */}
             <div className="flex-1 overflow-y-auto">
               {filteredCampsites.length === 0 ? (
-                <div className="text-center py-12 text-muted-foreground">
-                  <p className="text-lg mb-2">
-                    No campsites match your filters
-                  </p>
-                  <p className="text-sm">Try adjusting your filter criteria</p>
-                </div>
+                hasActiveFilters ? (
+                  <div className="text-center py-12 text-muted-foreground">
+                    <p className="text-lg mb-2">
+                      No campsites match your filters
+                    </p>
+                    <p className="text-sm">
+                      Try adjusting your filter criteria
+                    </p>
+                  </div>
+                ) : (
+                  <div className="text-center py-12 text-muted-foreground">
+                    <p className="text-lg mb-4">
+                      You don&apos;t have any campsites yet
+                    </p>
+                    <Button asChild>
+                      <Link href="/new-campsite">Add your first campsite</Link>
+                    </Button>
+                  </div>
+                )
               ) : (
-                <div className="space-y-6 pb-12">
+                <div className="space-y-6 pb-12 ">
                   {filteredCampsites.map((campsite) => (
                     <CampsiteCard
                       key={campsite.id}
@@ -209,12 +228,23 @@ export default function CampsitesView({
 
           {/* Cards Section - Grid View */}
           {filteredCampsites.length === 0 ? (
-            <div className="text-center py-12 text-muted-foreground">
-              <p className="text-lg mb-2">No campsites match your filters</p>
-              <p className="text-sm">Try adjusting your filter criteria</p>
-            </div>
+            hasActiveFilters ? (
+              <div className="text-center py-12 text-muted-foreground">
+                <p className="text-lg mb-2">No campsites match your filters</p>
+                <p className="text-sm">Try adjusting your filter criteria</p>
+              </div>
+            ) : (
+              <div className="text-center py-12 text-muted-foreground">
+                <p className="text-lg mb-4">
+                  You don&apos;t have any campsites yet
+                </p>
+                <Button asChild>
+                  <Link href="/new-campsite">Add your first campsite</Link>
+                </Button>
+              </div>
+            )
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-12">
               {filteredCampsites.map((campsite) => (
                 <CampsiteCard key={campsite.id} campsite={campsite} />
               ))}
